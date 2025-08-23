@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://qi5bbtnxaseq"]
+
+[ext_resource type="Script" uid="uid://b8k71pusx7jhu" path="res://Common/main.gd" id="1_af62b"]
+[ext_resource type="Script" uid="uid://cmkqmivcppvnr" path="res://Planets/planet.gd" id="2_mf43n"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_af62b"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_mf43n"]
+sky_material = SubResource("ProceduralSkyMaterial_af62b")
+
+[sub_resource type="Environment" id="Environment_i206d"]
+background_mode = 2
+sky = SubResource("Sky_mf43n")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_af62b")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.965926, -0.140963, 0.217064, 0, 0.83867, 0.544639, -0.258819, -0.526081, 0.810093, 1, 2, 3)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.848422, -0.323912, 0.418642, 0.173724, 0.576699, 0.798272, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_i206d")
+
+[node name="Planet" type="Node3D" parent="."]
+script = ExtResource("2_mf43n")
+metadata/_custom_type_script = "uid://cmkqmivcppvnr"
