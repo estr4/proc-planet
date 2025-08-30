@@ -1,4 +1,4 @@
-class_name TerrainFace extends Resource
+class_name TerrainFace
 
 var resolution: int
 var localUp: Vector3
