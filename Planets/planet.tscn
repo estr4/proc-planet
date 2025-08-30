@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://16iwapujclna"]
+
+[ext_resource type="Script" uid="uid://cmkqmivcppvnr" path="res://Planets/planet.gd" id="1_lbeam"]
+[ext_resource type="Script" uid="uid://cag5b678a0057" path="res://Planets/noise_filter.gd" id="2_agfjw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbeam"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_agfjw"]
+frequency = 0.04
+fractal_octaves = 2
+script = ExtResource("2_agfjw")
+roughness = 10.0
+metadata/_custom_type_script = "uid://cag5b678a0057"
+metadata/_preview_in_3d_space_ = true
+
+[node name="Planet" type="Node3D"]
+script = ExtResource("1_lbeam")
+mesh_material = SubResource("StandardMaterial3D_lbeam")
+noise = SubResource("FastNoiseLite_agfjw")
+metadata/_custom_type_script = "uid://cmkqmivcppvnr"

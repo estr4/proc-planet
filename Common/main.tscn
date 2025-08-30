@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://qi5bbtnxaseq"]
+[gd_scene load_steps=7 format=3 uid="uid://qi5bbtnxaseq"]
 
 [ext_resource type="Script" uid="uid://b8k71pusx7jhu" path="res://Common/main.gd" id="1_af62b"]
-[ext_resource type="Script" uid="uid://cmkqmivcppvnr" path="res://Planets/planet.gd" id="2_mf43n"]
+[ext_resource type="PackedScene" uid="uid://16iwapujclna" path="res://Planets/planet.tscn" id="2_mf43n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_af62b"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -16,6 +16,8 @@ sky = SubResource("Sky_mf43n")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mf43n"]
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_af62b")
 
@@ -29,6 +31,6 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_i206d")
 
-[node name="Planet" type="Node3D" parent="."]
-script = ExtResource("2_mf43n")
-metadata/_custom_type_script = "uid://cmkqmivcppvnr"
+[node name="Planet" parent="." instance=ExtResource("2_mf43n")]
+mesh_material = SubResource("StandardMaterial3D_mf43n")
+radius = 5.0
