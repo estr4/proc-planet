@@ -4,3 +4,6 @@ Procedural Planets based on https://www.youtube.com/watch?v=QN39W020LqU&list=PLF
 
 
 2. <img width="556" height="388" alt="image" src="https://github.com/user-attachments/assets/fdd570bd-14a0-42b8-9fdd-582ccfaa10c0" />
+
+
+3. <img width="372" height="360" alt="image" src="https://github.com/user-attachments/assets/aedec315-9376-4bea-9fc7-d0666f13ac5c" />
