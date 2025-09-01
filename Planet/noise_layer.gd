@@ -26,5 +26,5 @@ func evaluate(point: Vector3) -> float:
 	if not enabled:
 		return 0.0
 	
-	var v := (get_noise_3dv(point * roughness + offset) + 1.0) * 0.5
+	var v := (get_noise_3dv(point * roughness + offset) + 5.0) * 0.15
 	return v * amplitude

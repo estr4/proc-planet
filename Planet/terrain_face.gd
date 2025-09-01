@@ -14,7 +14,8 @@ func _init(local_up: Vector3, shape_settings) -> void:
 	axis_a = Vector3(local_up.y, local_up.z, local_up.x)
 	axis_b = axis_a.cross(local_up)
 
-func construct_mesh(resolution: int) -> void:
+func construct_mesh() -> void:
+	var resolution = shape_settings.resolution
 	var st = SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 

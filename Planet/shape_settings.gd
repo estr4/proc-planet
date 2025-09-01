@@ -12,8 +12,14 @@ class_name ShapeSettings extends Resource
 		sea_level = new
 		emit_changed()
 
-var elevation_min_max: MinMax
+@export var resolution := 32:
+	set(new):
+		resolution = new
+		emit_changed()
+
 		
+var elevation_min_max: MinMax
+	
 func calc_point_on_planet(point_on_unit_sphere: Vector3) -> Vector3:
 	
 	var first_layer_val: float = layers[0].evaluate(point_on_unit_sphere)

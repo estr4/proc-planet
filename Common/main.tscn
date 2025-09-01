@@ -1,88 +1,111 @@
-[gd_scene load_steps=17 format=3 uid="uid://p1mvf2vcf785"]
+[gd_scene load_steps=20 format=3 uid="uid://p1mvf2vcf785"]
 
 [ext_resource type="Script" uid="uid://ci7g434dq7wni" path="res://Common/main.gd" id="1_af62b"]
+[ext_resource type="Shader" uid="uid://b7qow6je42i1d" path="res://Sky/sky.gdshader" id="2_xbodk"]
 [ext_resource type="PackedScene" uid="uid://n2manboy15bk" path="res://Camera/free_cam.tscn" id="3_i206d"]
-[ext_resource type="Script" uid="uid://3c6qv2nfuygg" path="res://Planet/planet.gd" id="3_qqq7b"]
-[ext_resource type="Shader" uid="uid://bscm0jgb1g3tt" path="res://Planet/planet.gdshader" id="4_xbodk"]
-[ext_resource type="Script" uid="uid://cqc1rubm17xos" path="res://Planet/noise_layer.gd" id="5_wfmam"]
-[ext_resource type="Script" uid="uid://dwmmd0s516xtv" path="res://Planet/shape_settings.gd" id="6_i8a1s"]
+[ext_resource type="Script" uid="uid://3c6qv2nfuygg" path="res://Planet/planet.gd" id="4_xbodk"]
+[ext_resource type="Shader" uid="uid://bscm0jgb1g3tt" path="res://Planet/planet.gdshader" id="5_wfmam"]
+[ext_resource type="Script" uid="uid://cqc1rubm17xos" path="res://Planet/noise_layer.gd" id="6_i8a1s"]
+[ext_resource type="Script" uid="uid://dwmmd0s516xtv" path="res://Planet/shape_settings.gd" id="7_3x2pr"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mf43n"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xbodk"]
+noise_type = 2
+seed = -203495542
+frequency = 0.02
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_fractal_octaves = 3
 
-[sub_resource type="Sky" id="Sky_i206d"]
-sky_material = SubResource("ProceduralSkyMaterial_mf43n")
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_wfmam"]
+width = 128
+height = 128
+depth = 128
+seamless = true
+noise = SubResource("FastNoiseLite_xbodk")
 
-[sub_resource type="Environment" id="Environment_0285w"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wfmam"]
+shader = ExtResource("2_xbodk")
+shader_parameter/noise = SubResource("NoiseTexture3D_wfmam")
+shader_parameter/star_base_color = Color(0.95, 0.95, 1, 1)
+shader_parameter/star_hue_offset = 0.8
+shader_parameter/star_intensity = 0.066
+shader_parameter/layer_scale = 24.0
+shader_parameter/layer_scale_step = 10.0
+shader_parameter/layers_count = 3
+
+[sub_resource type="Sky" id="Sky_i8a1s"]
+sky_material = SubResource("ShaderMaterial_wfmam")
+
+[sub_resource type="Environment" id="Environment_3x2pr"]
 background_mode = 2
-sky = SubResource("Sky_i206d")
+sky = SubResource("Sky_i8a1s")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3x2pr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xbodk"]
 render_priority = 0
-shader = ExtResource("4_xbodk")
+shader = ExtResource("5_wfmam")
 
-[sub_resource type="GDScript" id="GDScript_34hby"]
+[sub_resource type="GDScript" id="GDScript_wfmam"]
 
-[sub_resource type="Resource" id="Resource_40tq0"]
-script = SubResource("GDScript_34hby")
+[sub_resource type="Resource" id="Resource_i8a1s"]
+script = SubResource("GDScript_wfmam")
 hot_reloading = true
-resolution = 120
-material = SubResource("ShaderMaterial_3x2pr")
+material = SubResource("ShaderMaterial_xbodk")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ci2lm"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3x2pr"]
 noise_type = 0
-seed = 205480540
+seed = -1551612448
 frequency = 0.025
-script = ExtResource("5_wfmam")
-roughness = 25.0
-amplitude = 1.0
-use_first_layer_mask = false
-enabled = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_6wdal"]
-noise_type = 0
-seed = -322402437
-frequency = 0.025
-script = ExtResource("5_wfmam")
-roughness = 25.0
-amplitude = 1.0
-use_first_layer_mask = false
-enabled = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_s0mjk"]
-noise_type = 0
-seed = 705066544
-frequency = 0.025
-script = ExtResource("5_wfmam")
-roughness = 25.0
-amplitude = 1.0
-use_first_layer_mask = false
-enabled = true
-
-[sub_resource type="Resource" id="Resource_n5iy0"]
 script = ExtResource("6_i8a1s")
-layers = Array[ExtResource("5_wfmam")]([SubResource("FastNoiseLite_ci2lm"), SubResource("FastNoiseLite_6wdal"), SubResource("FastNoiseLite_s0mjk")])
+roughness = 25.0
+amplitude = 1.0
+use_first_layer_mask = false
+enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_34hby"]
+noise_type = 0
+seed = -946402050
+frequency = 0.025
+script = ExtResource("6_i8a1s")
+roughness = 25.0
+amplitude = 1.0
+use_first_layer_mask = false
+enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_40tq0"]
+noise_type = 0
+seed = 1413549100
+frequency = 0.025
+script = ExtResource("6_i8a1s")
+roughness = 25.0
+amplitude = 1.0
+use_first_layer_mask = false
+enabled = true
+
+[sub_resource type="Resource" id="Resource_ci2lm"]
+script = ExtResource("7_3x2pr")
+layers = Array[ExtResource("6_i8a1s")]([SubResource("FastNoiseLite_3x2pr"), SubResource("FastNoiseLite_34hby"), SubResource("FastNoiseLite_40tq0")])
 planet_radius = 2.0
-sea_level = 1.56
+sea_level = 2.225
+resolution = 32
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_af62b")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_0285w")
+environment = SubResource("Environment_3x2pr")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 4, 0)
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0.435182, -0.40657, 0.803317, -0.246204, 0.804488, 0.540538, 0, 4, 0)
 shadow_enabled = true
 
 [node name="Camera3D" parent="." instance=ExtResource("3_i206d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14)
 
 [node name="Planet" type="Node3D" parent="."]
-script = ExtResource("3_qqq7b")
-planet_settings = SubResource("Resource_40tq0")
-shape_settings = SubResource("Resource_n5iy0")
+transform = Transform3D(1, 0, 0, 0, -0.559898, 0.828561, 0, -0.828561, -0.559898, 0, 0, 0)
+script = ExtResource("4_xbodk")
+planet_settings = SubResource("Resource_i8a1s")
+shape_settings = SubResource("Resource_ci2lm")
 metadata/_custom_type_script = "uid://3c6qv2nfuygg"
