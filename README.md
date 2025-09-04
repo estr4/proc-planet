@@ -10,3 +10,5 @@ Procedural Planets based on https://www.youtube.com/watch?v=QN39W020LqU&list=PLF
 
 
 4. <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/aee32907-dca8-4042-8068-9389e2064d77" />
+
+NOTE: for some reason, the planet node needs to be deleted on startup and readded to properly work
